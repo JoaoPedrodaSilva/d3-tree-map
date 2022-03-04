@@ -1,0 +1,34 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+  }
+  
+  #description {margin: 0}
+  
+  #canvas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #legend{margin: 20px}
+  
+  #tooltip {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 5%;  
+  }
+  
+  #tooltip.visible {display: flex}
+  
+  p {margin: 0}
