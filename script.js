@@ -10,8 +10,8 @@ req.onload = () => {
 req.send()
 
 //global variables
-const w = 800
-const h = 600
+const w = 750
+const h = 575
 let tiles
 const categoriesAndColors =[
   {
@@ -139,8 +139,8 @@ const generateTiles = (dataSet) => {
                        .on('mouseover', (e, t, i) => {
                               tooltip.classList.add('visible')
                               tooltip.setAttribute('data-value', t.value)                              
-                              tooltip.style.left = e.pageX + 'px'
-                              tooltip.style.top = e.pageY + 'px'
+                              tooltip.style.left = e.pageX -100 + 'px'
+                              tooltip.style.top = e.pageY - 100 + 'px'
                               tooltip.innerHTML = (`
                                 <p>Name: ${t.data.name}</p>
                                 <p>Category: ${t.data.category}</p>

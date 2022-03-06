@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     cursor: default;
+    background-color: white;
   }
   
   #description {margin: 0}
@@ -15,7 +16,11 @@
     justify-content: center;
   }
   
-  #legend{margin: 20px}
+rect:hover {
+  fill: whitesmoke;
+}
+
+  #legend{margin: 5px}
   
   #tooltip {
     position: absolute;
