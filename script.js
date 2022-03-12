@@ -10,7 +10,7 @@ req.onload = () => {
 req.send()
 
 //global variables
-const w = 750
+const w = 630
 const h = 575
 let tiles
 const categoriesAndColors =[
