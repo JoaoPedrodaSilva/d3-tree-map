@@ -4,14 +4,14 @@ req.onload = () => {
   const dataSet = JSON.parse(req.responseText)
   
   generateTreemap(dataSet)
-  generateTiles(dataSet)
-  generateLegend(dataSet)
+  generateTiles()
+  generateLegend()
 }
 req.send()
 
 //global variables
-const w = 630
-const h = 575
+const w = 600
+const h = 520
 let tiles
 const categoriesAndColors =[
   {
@@ -115,12 +115,16 @@ const generateTreemap = (dataSet) => {
   }))
 }
 
-const generateTiles = (dataSet) => {
-  const tooltip = document.querySelector('#tooltip')
+const generateTiles = () => {
+  const tooltip = document.querySelector('.tooltip')
+  const iframeContainer = document.querySelector('.iframe-container')
+  const tooltipLeft = window.getComputedStyle(iframeContainer).width.replace('px', '')
+  const tooltipBottom = window.getComputedStyle(iframeContainer).height.replace('px', '')
   
-  const treemapCanvas = d3.select('#treemap-canvas')
-                          .attr('width', w)
-                          .attr('height', h)
+  const treemapCanvas = d3.select('.d3-content')
+                          .attr("preserveAspectRatio", "xMinYMin meet")
+                          .attr("viewBox", `0 0 ${w} ${h}`)
+                          .classed("svg-content", true)
                             .selectAll('g')
                             .data(tiles)
                             .enter()
@@ -128,19 +132,14 @@ const generateTiles = (dataSet) => {
                             .attr('transform', t => 'translate(' + t.x0 + ', ' + t.y0 + ')')
   
           treemapCanvas.append('rect')
-                       .attr('class', 'tile')
-                       .attr('data-name', t => t.data.name)
-                       .attr('data-category', t => t.data.category)
-                       .attr('data-value', t => t.data.value)
                        .attr('fill', t => t.color)
                        .attr('width', t => t.x1 - t.x0)
                        .attr('height', t => t.y1 - t.y0)
                        .style("stroke", "black")
                        .on('mouseover', (e, t, i) => {
-                              tooltip.classList.add('visible')
-                              tooltip.setAttribute('data-value', t.value)                              
-                              tooltip.style.left = e.pageX -100 + 'px'
-                              tooltip.style.top = e.pageY - 100 + 'px'
+                              tooltip.classList.add('visible')                              
+                              tooltip.style.left = e.clientX - (tooltipLeft * 0.20) + 'px'
+                              tooltip.style.top = e.clientY + (tooltipBottom * 0.05) + 'px'
                               tooltip.innerHTML = (`
                                 <p>Name: ${t.data.name}</p>
                                 <p>Category: ${t.data.category}</p>
@@ -154,7 +153,7 @@ const generateTiles = (dataSet) => {
                        .enter()
                        .append('tspan')                       
                          .text(t => t)
-                         .style('font-size', '10px')
+                         .style('font-size', '9px')
                          .attr('x', 6)
                          .attr('y', (t, i) => 15 + i * 15)
                          .on('mouseover', () => tooltip.classList.add('visible'))
@@ -162,30 +161,29 @@ const generateTiles = (dataSet) => {
                        
 }
 
-const generateLegend = (dataSet) => {
-  const legendWidth = 100
-  const legendHeight = h
-  const squareSize = 20
+const generateLegend = () => {
+  const legendWidth = 60
+  const legendHeight = 500
+  const squareSize = 10
   
-  const legendCanvas = d3.select('#legend')
-                         .attr('width', legendWidth)
-                         .attr('height', legendHeight)
+  const legendCanvas = d3.select('.legend')
+                          .attr("preserveAspectRatio", "xMinYMin meet")
+                          .attr("viewBox", `0 0 ${legendWidth} ${legendHeight}`)
+                          .classed("svg-content", true)
                            .selectAll('g')
                            .data(categoriesAndColors)
                            .enter()
                            .append('g')
   
           legendCanvas.append('rect')
-                      .attr('class', 'legend-item')
-                      .attr('data-name', d => d.category)
                       .attr('fill', d => d.color)
                       .attr('width', squareSize)
                       .attr('height', squareSize)
                       .attr('x', squareSize)
-                      .attr('y', (_, i) => i * 30 + 32)
+                      .attr('y', (_, i) => i * 25 + 32)
   
           legendCanvas.append('text')
                       .text(d => d.category)
                       .attr('x', squareSize * 2 + 4)
-                      .attr('y', (_, i) => i * 30 + 49)
+                      .attr('y', (_, i) => i * 25 + 41)
 }

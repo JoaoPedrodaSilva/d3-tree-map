@@ -9,14 +9,17 @@
     <title>D3 Tree Map</title>
 </head>
 <body>
-    <div id='container'>  
-        <h1 id='title'>Video Game Sales</h1>
-        <p id='description'>Top 100 Most Sold Video Games Grouped by Platform</p>
-        <div id='canvas'>
-          <svg id='treemap-canvas'></svg>
-          <svg id='legend'></svg>    
+    <div class='iframe-container'>        
+        
+        <div class="responsive-div"> 
+          <h1 class='title'>Video Game Sales</h1>
+          <p class='description'>Top 100 Most Sold Video Games Grouped by Platform</p>
+          <div class='canvas'>
+            <svg class='d3-content'></svg>
+            <svg class='legend'></svg>
+          </div>
+          <div class='tooltip'></div>
         </div>
-        <div id='tooltip'></div>  
       </div>
 </body>
 <script defer src="script.js"></script>
