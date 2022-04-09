@@ -153,7 +153,7 @@ const generateTiles = () => {
                        .enter()
                        .append('tspan')                       
                          .text(t => t)
-                         .style('font-size', '9px')
+                         .style('font-size', '10px')
                          .attr('x', 6)
                          .attr('y', (t, i) => 15 + i * 15)
                          .on('mouseover', () => tooltip.classList.add('visible'))
@@ -186,4 +186,5 @@ const generateLegend = () => {
                       .text(d => d.category)
                       .attr('x', squareSize * 2 + 4)
                       .attr('y', (_, i) => i * 25 + 41)
+                      .style('font-size', '12px')
 }
