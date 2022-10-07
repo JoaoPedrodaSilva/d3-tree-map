@@ -1,12 +1,12 @@
 html {
-  font-size: 10px;
+    font-size: 8px;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .iframe-container {
@@ -15,45 +15,49 @@ body {
     align-items: center;
     justify-content: center;
     cursor: default;
-    width: 600px;
-    height: 600px;
-  }
-  
-  .responsive-div {    
+    width: 100vw;
+    height: 100vh;
+    max-width: 475px;
+    max-height: 475px;
+}
+
+.responsive-div {
     display: inline-block;
     position: relative;
     width: 100%;
     padding-bottom: 100%;
     vertical-align: top;
     overflow: hidden;
-  }
+}
 
-  .canvas {
+.canvas {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  }
-    .d3-content {
-      display: inline-block;
-      position: absolute;
-      top: 15%;
-      left: 0;
-      width: 90%;
-    }  
-      rect:hover {
-        fill: whitesmoke;
-      }
+}
 
-  .legend{
+.d3-content {
+    display: inline-block;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 90%;
+}
+
+rect:hover {
+    fill: whitesmoke;
+}
+
+.legend {
     display: inline-block;
     position: absolute;
     top: 12.5%;
     right: 0;
     width: 10%;
-  }
-  
-  .tooltip {
+}
+
+.tooltip {
     position: fixed;
     display: none;
     flex-direction: column;
@@ -63,59 +67,29 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 0.5%;
     font-size: 1.8rem;
-    border-radius: 5%;  
-  }
-  
-  .tooltip.visible {display: flex}
-  
-  .title {
+    border-radius: 5%;
+}
+
+.tooltip.visible {
+    display: flex
+}
+
+.title {
     text-align: center;
     font-size: 2.5rem;
-  }
+}
 
-  .description {
+.description {
     text-align: center;
     font-size: 1.5rem;
-  }
-  
-  p {margin: 0}
+}
 
-  @media (max-width: 1024px) {
-    .iframe-container {
-        width: 560px;
-        height: 560px;
-    }
-  
+p {
+    margin: 0
+}
+
+@media (max-width: 640px) {
     html {
-        font-size: 7px;
+        font-size: 5px;
     }
-  }
-    
-  @media (max-width: 768px) {
-    .iframe-container {
-        width: 420px;
-        height: 420px;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .iframe-container {
-        width: 350px;
-        height: 350px;
-    }
-  
-    html {
-        font-size: 6px;
-    }
-  }
-  
-  @media (max-width: 425px) {
-    .iframe-container {
-        width: 240px;
-        height: 240px;
-    }
-  
-    html {
-        font-size: 4px;
-    }
-  }
+}
